@@ -1,7 +1,13 @@
 import React from 'react';
-function AdminPlatForm(){
+function AdminPlatForm(props){
+    function logout(){
+        props.auth(false);
+    }
     return(
-        <div> This is Admin Platform</div>
+        <div>
+            <div> This is Admin Platform</div>
+            <button onClick={logout}>Logout</button>
+        </div>
     )
 }
 export default AdminPlatForm

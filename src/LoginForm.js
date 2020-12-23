@@ -8,7 +8,6 @@ function LoginForm(props) {
 			data.loginName=theForm.loginName.value;
 			data.adminPwd=theForm.adminPwd.value;
 
-			//console.log(data);
 			fetch('/login',
 				{
 					body: JSON.stringify(data),
@@ -16,16 +15,16 @@ function LoginForm(props) {
 						'Content-Type': 'application/json' 
 					},
 					method:'POST',
-				}
-			)
+				})
 			.then(response=>{
 				if (response.ok) {
-					props.history.push('/adminPlatform/main');
+					props.auth(true);
 				} else {
 					throw response;
 				}
 			})
 			.catch(e=>{
+				alert("Invalid user name or password");
 				console.log(e.status);
 			});
 		}
