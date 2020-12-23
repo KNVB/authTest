@@ -36,7 +36,7 @@ function LoginForm(props) {
 				<table border="0">
 					<thead>
 						<tr>
-							<td colSpan="2" className="text-center">Roster Scheduler Login page</td>
+							<td colSpan="2" className="text-center">Login page</td>
 						</tr>	
 					</thead>	
 					<tbody>
