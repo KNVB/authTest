@@ -1,19 +1,25 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 function AdminPlatForm(props){
-    fetch('/privateAPI/getClock',{
-        method:'POST'
-    })
-    .then(response=>{
-        if (response.ok) {
-            console.log("Hi");
-        } else {
-            throw response;
-        }
-    })
-    .catch(e=>{
-        alert("Failed");
-        console.log(e.status);
-    });
+    useEffect(() => {
+        fetch('/privateAPI/getClock',{
+            method:'GET'
+        })
+        .then(response=>{
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw response;
+            }
+        })
+        .then(result=>{
+            let serverDate=new Date(result);
+            console.log(serverDate);
+        })
+        .catch(e=>{
+            alert("Failed");
+            console.log(e.status);
+        });
+    },[]);
     function logout(){
         props.auth(false);
     }
