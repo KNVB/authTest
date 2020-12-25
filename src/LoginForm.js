@@ -1,4 +1,5 @@
 import React from 'react';
+
 function LoginForm(props) {
 	let login=(e)=>{
 		
@@ -7,7 +8,7 @@ function LoginForm(props) {
 			let data={};
 			data.loginName=theForm.loginName.value;
 			data.adminPwd=theForm.adminPwd.value;
-
+			
 			fetch('/login',
 				{
 					body: JSON.stringify(data),
@@ -27,6 +28,7 @@ function LoginForm(props) {
 				alert("Invalid user name or password");
 				console.log(e.status);
 			});
+
 		}
 		e.preventDefault();
 	}

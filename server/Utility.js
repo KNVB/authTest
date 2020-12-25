@@ -3,6 +3,7 @@ module.exports ={
   isEmpty,
   loginAPI
 }
+
 function isAuthenticated(req,res,next){
   let signedCookies=req.signedCookies;
   if (isEmpty(signedCookies) || (!signedCookies.isAdmin)){
