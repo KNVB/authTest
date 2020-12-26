@@ -1,9 +1,9 @@
 module.exports ={
   isAuthenticated,
   isEmpty,
-  loginAPI
+  loginAPI,
+  logout
 }
-
 function isAuthenticated(req,res,next){
   let signedCookies=req.signedCookies;
   if (isEmpty(signedCookies) || (!signedCookies.isAdmin)){
@@ -18,7 +18,7 @@ function isEmpty(obj){
 function loginAPI(req,res){
   let loginName=req.body.loginName;
   let password=req.body.adminPwd;
-  if ((loginName==='rosterAdmin') && (password==='password')){
+  if ((loginName==='admin') && (password==='password')){
     console.log("Admin. login success.");
     res.cookie('isAdmin',true,{
       path:'/',
@@ -26,8 +26,13 @@ function loginAPI(req,res){
       signed: true, 
       maxAge:3600000
     });
-    res.send("OK");
+    res.send({returnMsg:"OK"});
   } else {
-    res.sendStatus(401);
+    res.status(401).send({returnMsg:"Invalid user name or password."});
   }
+}
+function logout(res){
+  res.clearCookie('isAdmin');
+  console.log("Admin. logout success.");
+  res.send({returnMsg:"OK"});
 }

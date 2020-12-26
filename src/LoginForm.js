@@ -1,6 +1,7 @@
 import React from 'react';
-
+import {fetchAPI} from './Utility';
 function LoginForm(props) {
+	
 	let login=(e)=>{
 		
 		let theForm=e.target;
@@ -9,25 +10,17 @@ function LoginForm(props) {
 			data.loginName=theForm.loginName.value;
 			data.adminPwd=theForm.adminPwd.value;
 			
-			fetch('/login',
-				{
-					body: JSON.stringify(data),
-					headers:{
-						'Content-Type': 'application/json' 
-					},
-					method:'POST',
-				})
+			fetchAPI('/login',data,'POST')
 			.then(response=>{
-				if (response.ok) {
-					props.auth(true);
-				} else {
-					throw response;
+				if (response.returnMsg==="OK"){
+					props.auth(true);					
+				}else{
+					alert(response.returnMsg);
 				}
 			})
-			.catch(e=>{
-				alert("Invalid user name or password");
-				console.log(e.status);
-			});
+			.catch(err => {
+				alert("Something wrong when login the system : "+err.message);
+			});			
 
 		}
 		e.preventDefault();

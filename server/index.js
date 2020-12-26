@@ -15,7 +15,10 @@ app.use('/privateAPI',util.isAuthenticated,privateAPI);
 app.post('/login',(req,res)=>{
   util.loginAPI(req,res);
 });
-privateAPI.get('/getClock',(req,res)=>{
+app.post('/logout',(req,res)=>{
+  util.logout(res);
+})
+privateAPI.post('/getClock',(req,res)=>{
   res.send(new Date());
 });
 app.listen(3001, () =>

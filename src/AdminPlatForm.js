@@ -1,27 +1,24 @@
 import React,{useEffect} from 'react';
+import {fetchAPI} from './Utility';
 function AdminPlatForm(props){
     useEffect(() => {
-        fetch('/privateAPI/getClock',{
-            method:'GET'
-        })
-        .then(response=>{
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw response;
-            }
-        })
+        fetchAPI('/privateAPI/getClock',{},'POST')
         .then(result=>{
             let serverDate=new Date(result);
             console.log(serverDate);
-        })
-        .catch(e=>{
-            alert("Failed");
-            console.log(e.status);
-        });
+		})
+		.catch(err => {
+			alert("Something wrong when calling server api: "+err.message);
+		});
     },[]);
     function logout(){
-        props.auth(false);
+        fetchAPI('/logout',{},'POST')
+        .then(result=>{
+            props.auth(false);
+        })
+        .catch(err=>{
+          alert("Something wrong when logout the system: "+err.message);  
+        })
     }
     return(
         <div>
