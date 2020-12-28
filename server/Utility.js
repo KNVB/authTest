@@ -28,7 +28,7 @@ function loginAPI(req,res){
     });
     res.status(200).send({});
   } else {
-    res.status(401).end();
+    res.status(401).send();
   }
 }
 function logout(res){

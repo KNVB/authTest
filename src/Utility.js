@@ -11,6 +11,7 @@ export function fetchAPI(url,data,method){
                 if (response.ok) {
                     return response.json();
                 }else{
+                    //console.log(response);
 					throw new Error(response.status); 
 				}
             })
