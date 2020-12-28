@@ -15,7 +15,8 @@ app.use('/privateAPI',util.isAuthenticated,privateAPI);
 app.post('/login',(req,res)=>{
   util.loginAPI(req,res);
 });
-app.post('/logout',(req,res)=>{
+privateAPI.post('/logout',(req,res)=>{
+  console.log(req.signedCookies);
   util.logout(res);
 })
 privateAPI.post('/getClock',(req,res)=>{

@@ -21,7 +21,7 @@ function loginAPI(req,res){
   if ((loginName==='admin') && (password==='password')){
     console.log("Admin. login success.");
     res.cookie('isAdmin',true,{
-      path:'/',
+      path:'/privateAPI/',
       httpOnly:true,
       signed: true, 
       maxAge:3600000
@@ -32,7 +32,7 @@ function loginAPI(req,res){
   }
 }
 function logout(res){
-  res.clearCookie('isAdmin');
+  res.clearCookie('isAdmin',{ path: '/privateAPI/' });
   console.log("Admin. logout success.");
   res.send({returnMsg:"OK"});
 }

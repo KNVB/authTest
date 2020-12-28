@@ -12,7 +12,7 @@ function AdminPlatForm(props){
 		});
     },[]);
     function logout(){
-        fetchAPI('/logout',null,{},'POST')
+        fetchAPI('/privateAPI/logout','POST',null,{})
         .then(result=>{
             props.auth(false);
         })
