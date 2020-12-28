@@ -8,9 +8,11 @@ export function fetchAPI(url,data,method){
                     "method":method,
                 })
             .then(response => {
-                return response.json()
+                if (response.ok) {
+                    return response.json();
+                }else{
+					throw new Error(response.status); 
+				}
             })
-            .catch(error=>{
-                throw error;
-            })
+            
 }

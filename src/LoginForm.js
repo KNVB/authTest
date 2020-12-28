@@ -9,18 +9,21 @@ function LoginForm(props) {
 			let data={};
 			data.loginName=theForm.loginName.value;
 			data.adminPwd=theForm.adminPwd.value;
-			
+
 			fetchAPI('/login',data,'POST')
-			.then(response=>{
-				if (response.returnMsg==="OK"){
-					props.auth(true);					
-				}else{
-					alert(response.returnMsg);
-				}
+			.then(data=>{
+				props.auth(true);
 			})
-			.catch(err => {
-				alert("Something wrong when login the system : "+err.message);
-			});			
+			.catch(error=>{
+				switch(error.message){
+					case "401":	alert("Invalid user name or password");
+								break;
+					default:
+						alert("Sometime when login the system:"+error.message);
+						break;			
+				}
+			});
+			
 
 		}
 		e.preventDefault();

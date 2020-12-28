@@ -26,9 +26,9 @@ function loginAPI(req,res){
       signed: true, 
       maxAge:3600000
     });
-    res.send({returnMsg:"OK"});
+    res.status(200).send({});
   } else {
-    res.status(401).send({returnMsg:"Invalid user name or password."});
+    res.status(401).end();
   }
 }
 function logout(res){
