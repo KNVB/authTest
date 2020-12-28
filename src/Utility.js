@@ -1,11 +1,13 @@
-export function fetchAPI(url,data,method){
+export function fetchAPI(url,method,queryString,postData){
+    if (queryString)
+        url+="?"+queryString;
     return fetch(url,
                 {
-                    body: JSON.stringify(data),
+                    body: JSON.stringify(postData),
                     headers:{
                         'Content-Type': 'application/json' 
                     },
-                    "method":method,
+                    "method":method || 'GET',
                 })
             .then(response => {
                 if (response.ok) {

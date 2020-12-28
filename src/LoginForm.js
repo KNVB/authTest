@@ -10,7 +10,7 @@ function LoginForm(props) {
 			data.loginName=theForm.loginName.value;
 			data.adminPwd=theForm.adminPwd.value;
 
-			fetchAPI('/login',data,'POST')
+			fetchAPI('/login','POST',null,data)
 			.then(data=>{
 				props.auth(true);
 			})
