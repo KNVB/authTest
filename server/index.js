@@ -19,7 +19,8 @@ privateAPI.post('/logout',(req,res)=>{
   console.log(req.signedCookies);
   util.logout(res);
 })
-privateAPI.post('/getClock',(req,res)=>{
+privateAPI.get('/getClock',(req,res)=>{
+  console.log(req.query);
   res.send(new Date());
 });
 app.listen(3001, () =>

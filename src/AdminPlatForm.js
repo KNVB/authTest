@@ -2,7 +2,7 @@ import React,{useEffect} from 'react';
 import {fetchAPI} from './Utility';
 function AdminPlatForm(props){
     useEffect(() => {
-        fetchAPI('/privateAPI/getClock','POST',null,{})
+        fetchAPI('/privateAPI/getClock','GET',{"year":2020,"month":'Dec'})
         .then(result=>{
             let serverDate=new Date(result);
             console.log("Server date="+serverDate);
@@ -12,7 +12,7 @@ function AdminPlatForm(props){
 		});
     },[]);
     function logout(){
-        fetchAPI('/privateAPI/logout','POST',null,{})
+        fetchAPI('/privateAPI/logout','POST')
         .then(result=>{
             props.auth(false);
         })
