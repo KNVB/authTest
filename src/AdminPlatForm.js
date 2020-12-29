@@ -4,8 +4,9 @@ function AdminPlatForm(props){
     useEffect(() => {
         fetchAPI('/privateAPI/getClock','GET',{"year":2020,"month":'Dec'})
         .then(result=>{
-            let serverDate=new Date(result);
-            console.log("Server date="+serverDate);
+            console.log(result);
+            let serverDate=new Date(result.year,result.month,result.date);
+            console.log("Server date="+serverDate);            
 		})
 		.catch(err => {
 			alert("Something wrong when calling server api: "+err.message);

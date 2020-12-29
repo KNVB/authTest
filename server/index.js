@@ -21,7 +21,8 @@ privateAPI.post('/logout',(req,res)=>{
 })
 privateAPI.get('/getClock',(req,res)=>{
   console.log(req.query);
-  res.send(new Date());
+  let now =new Date();
+  res.send({date:now.getDate(),month:now.getMonth(),year:now.getFullYear()});
 });
 app.listen(3001, () =>
   console.log('Express server is running on localhost:3001')
