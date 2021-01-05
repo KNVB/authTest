@@ -12,7 +12,8 @@ function LoginForm(props) {
 
 			fetchAPI('/login','POST',null,data)
 			.then(data=>{
-				props.auth(true);
+				props.auth("true");
+				sessionStorage.setItem("isAuthenticate","true");
 			})
 			.catch(error=>{
 				switch(error.message){

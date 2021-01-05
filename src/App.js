@@ -4,18 +4,19 @@ import React,{useState} from 'react';
 import GuardedRoute from './GuardedRoute';
 import LoginForm from './LoginForm';
 export default function App() {
-	const[isAutheticated, setIsAutheticated] = useState(false);
-	if (isAutheticated){
+	const[isAuthenticated, setIsAuthenticated] = useState(sessionStorage.getItem("isAuthenticate"));
+	console.log("isAuthenticated="+isAuthenticated);
+	if (isAuthenticated===null){
+		return <LoginForm auth={setIsAuthenticated}/>
+	} else {
 		return (
 			<Router>
 				<GuardedRoute 
-					auth={isAutheticated}
-					component={()=><AdminPlatForm auth={setIsAutheticated}/>}
+					auth={isAuthenticated}
+					component={()=><AdminPlatForm auth={setIsAuthenticated}/>}
 					path='/adminPlatform'/>
 				<Redirect to='/adminPlatform/main'/>
 			</Router>
-		);
-	} else {
-		return <LoginForm auth={setIsAutheticated}/>
+		);		
 	}		
 }

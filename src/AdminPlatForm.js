@@ -14,7 +14,8 @@ function AdminPlatForm(props){
     function logout(){
         fetchAPI('/privateAPI/logout','POST',null,{})
         .then(result=>{
-            props.auth(false);
+            sessionStorage.clear();
+            props.auth(null);            
         })
         .catch(err=>{
           alert("Something wrong when logout the system: "+err.message);  
