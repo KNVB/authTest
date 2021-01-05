@@ -1,9 +1,18 @@
-export function fetchAPI(url,method,queryString,postData){
-    if (queryString)
+export function fetchAPI(url,method,getParams,postParams){
+    if (getParams){
+        const paramsObject = new URLSearchParams(getParams);
+        const queryString = paramsObject.toString();  
         url+="?"+queryString;
+    }
+    console.log("=======================");
+    console.log("url="+url);
+    console.log("method="+method);
+    console.log("getParams="+getParams);
+    console.log("postParams="+postParams);
+    console.log("=======================");
     return fetch(url,
                 {
-                    body: JSON.stringify(postData),
+                    body: JSON.stringify(postParams),
                     headers:{
                         'Content-Type': 'application/json' 
                     },
