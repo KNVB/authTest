@@ -6,7 +6,7 @@ module.exports ={
 }
 function isAuthenticated(req,res,next){
   let signedCookies=req.signedCookies;
-  if (isEmpty(signedCookies) || (!signedCookies.isAdmin)){
+  if (isEmpty(signedCookies) || (signedCookies.isAdmin!=='privateAPI')){
     return res.status(401).end();
   } else {
     next();
@@ -20,7 +20,7 @@ function loginAPI(req,res){
   let password=req.body.adminPwd;
   if ((loginName==='admin') && (password==='password')){
     console.log("Admin. login success.");
-    res.cookie('isAdmin',true,{
+    res.cookie('isAdmin','privateAPI',{
       path:'/privateAPI/',
       httpOnly:true,
       signed: true, 

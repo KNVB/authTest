@@ -9,7 +9,7 @@ let privateAPI= express.Router();
 let util=require("./Utility.js");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookierParser('這三件事'));
+app.use(cookierParser('&*~^#@3$%@#!+*'));
 app.use(cors());
 app.use('/privateAPI',util.isAuthenticated,privateAPI);
 app.post('/login',(req,res)=>{
