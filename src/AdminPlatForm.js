@@ -1,5 +1,5 @@
 import React,{useEffect} from 'react';
-import {fetchAPI} from './Utility';
+import {fetchAPI,logout} from './Utility';
 function AdminPlatForm(props){
     useEffect(() => {
         fetchAPI('/privateAPI/getClock','GET',{"year":2020,"month":'Dec'})
@@ -12,20 +12,10 @@ function AdminPlatForm(props){
 			alert("Something wrong when calling server api: "+err.message);
 		});
     },[]);
-    function logout(){
-        fetchAPI('/privateAPI/logout','POST')
-        .then(result=>{
-            sessionStorage.clear();
-            props.auth(null);            
-        })
-        .catch(err=>{
-          alert("Something wrong when logout the system: "+err.message);  
-        })
-    }
     return(
         <div>
             <div> This is Admin Platform</div>
-            <button onClick={logout}>Logout</button>
+            <button onClick={()=>logout(props)}>Logout</button>
         </div>
     )
 }

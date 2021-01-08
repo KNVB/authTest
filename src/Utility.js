@@ -28,3 +28,13 @@ export function fetchAPI(url,method,getParams,postParams){
             })
             
 }
+export function logout(props){
+    fetchAPI('/privateAPI/logout','POST')
+    .then(result=>{
+        sessionStorage.clear();
+        props.auth(null);
+    })
+    .catch(err=>{
+      alert("Something wrong when logout the system: "+err.message);  
+    })
+}

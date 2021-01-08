@@ -4,10 +4,10 @@ import React,{useState} from 'react';
 import GuardedRoute from './GuardedRoute';
 import LoginForm from './LoginForm';
 export default function App() {
-	const[isAuthenticated, setIsAuthenticated] = useState(sessionStorage.getItem("isAuthenticate"));
-	console.log("isAuthenticated="+isAuthenticated);
-	if (isAuthenticated===null){
-		return <LoginForm auth={setIsAuthenticated}/>
+	const[isAutheticated, setIsAutheticated] = useState(sessionStorage.getItem("accessToken"));
+	console.log("isAutheticated="+ (isAutheticated!==null));
+	if (isAutheticated===null){
+		return <LoginForm auth={setIsAutheticated}/>
 	} else {
 		return (
 			<Router>
