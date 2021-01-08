@@ -4,8 +4,11 @@ import React,{useState} from 'react';
 import GuardedRoute from './GuardedRoute';
 import LoginForm from './LoginForm';
 export default function App() {
-	const[isAutheticated, setIsAutheticated] = useState(false);
-	if (isAutheticated){
+	const[isAutheticated, setIsAutheticated] = useState(sessionStorage.getItem("accessToken"));
+	console.log("isAutheticated="+ (isAutheticated!==null));
+	if (isAutheticated===null){
+		return <LoginForm auth={setIsAutheticated}/>
+	} else {
 		return (
 			<Router>
 				<GuardedRoute 
@@ -14,8 +17,6 @@ export default function App() {
 					path='/adminPlatform'/>
 				<Redirect to='/adminPlatform/main'/>
 			</Router>
-		);
-	} else {
-		return <LoginForm auth={setIsAutheticated}/>
+		);		
 	}		
 }
